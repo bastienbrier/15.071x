@@ -1,0 +1,100 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+gerber = read.csv("gerber.csv")
+str(gerber)
+mean(gerber$voting)
+neiVote = gerber$neighbors[gerber$voting==1]
+table(neiVote) / length(neiVote)
+neiVote
+table(selfVote) / length(selfVote)
+selfVote = gerber$self[gerber$voting==1]#
+table(selfVote) / length(selfVote)
+civicVote = gerber$civicduty[gerber$voting==1]
+table(civicVote) / length(civicVote)
+hawVote = gerber$hawthorne[gerber$voting==1]
+table(hawVote) / length(hawVote)
+logisModel = glm(voting ~ neighbors + self + civicduty + hawthorne, data=gerber)
+summary(logisModel)
+logModel = glm(voting ~ neighbors + self + civicduty + hawthorne, data=gerber)#
+summary(logModel)
+predicts = predict(logModel)
+table(gerber$voting, predicts > 0.3)
+(134513+51966) / (134513+100875+56730+51966)
+table(gerber$voting, predicts > 0.5)
+235388 / (235388+108696)
+table(gerber$voting)#
+library(ROCR)
+install.packages("gplots")
+predictROC = prediction(predicts, gerber$voting)
+as.numeric(performance(predictROC, "auc")@y.values)
+library(rpart)#
+library(rpart.plot)
+CARTmodel = rpart(voting ~ civicduty + hawthorne + self + neighbors, data=gerber)
+prp(CARTmodel)
+CARTmodel2 = rpart(voting ~ civicduty + hawthorne + self + neighbors, data=gerber, cp=0.0)
+prp(CARTmodel2)
+CARTmodel3 = rpart(voting ~ civicduty + hawthorne + self + neighbors + sex, data=gerber, cp=0.0)
+prp(CARTmodel3)
+controlTree1 = rpart(voting ~ control, data=gerber, cp=0.0)
+controlTree2 = rpart(voting ~ control + sex, data=gerber, cp=0.0)
+prp(controlTree1, digits=6)
+prp(controlTree2, digits=6)
+logModel = glm(voting ~ control + sex, data=gerber, family="binomial")
+summary(logModel)
+Possibilities = data.frame(sex=c(0,0,1,1), control=c(0,1,0,1))
+predict(logModel, newdata=Possibilities, type="response")
+logModel2 = glm(voting ~ sex + control + sex:control, data=gerber, family="binomial")
+summary(logModel2)
+predict(logModel2, newdata=Possibilities, type="response")
+abs(0.290456-0.2908065)
+predict(logModel2, newdata=Possibilities, type="response")
+abs(0.2904558 - 0.290456)

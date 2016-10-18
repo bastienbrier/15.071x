@@ -1,0 +1,42 @@
+# 1.1 - 1.5#
+mvt = read.csv("mvtWeek1.csv")#
+str(mvt)#
+summary(mvt)#
+#
+# 2.1 - 2.2#
+mvt$Date[1]#
+DateConvert = as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))#
+#
+# 2.3#
+mvt$Month = months(DateConvert)#
+mvt$Weekday = weekdays(DateConvert)#
+mvt$Date = DateConvert#
+table(mvt$Month)#
+#
+# 2.4#
+table(mvt$Weekday)#
+#
+# 2.5#
+table(mvt$Arrest, mvt$Month)#
+#
+# 3.1#
+hist(mvt$Date, breaks=100)#
+#
+# 3.2#
+boxplot(mvt$Date~mvt$Arrest)#
+#
+# 3.3 - 3.5#
+table(mvt$Arrest, mvt$Year)#
+#
+# 4.1#
+sort(table(mvt$LocationDescription))#
+#
+# 4.2#
+Top5 = subset(mvt, mvt$LocationDescription == "STREET" | mvt$LocationDescription == "PARKING LOT/GARAGE(NON.RESID.)" | mvt$LocationDescription == "ALLEY" | mvt$LocationDescription == "GAS STATION" | mvt$LocationDescription == "DRIVEWAY - RESIDENTIAL")#
+#
+# 4.3#
+Top5$LocationDescription = factor(Top5$LocationDescription)#
+table(Top5$Arrest, Top5$LocationDescription)#
+#
+# 4.4 - 4.5#
+table(Top5$LocationDescription, Top5$Weekday)

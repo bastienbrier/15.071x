@@ -1,0 +1,177 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+letters = read.csv("letters_ABPR.csv")
+letters$isB = as.factor(letters$letter == "B")
+library(caTools)
+set.seed(1000)
+split = sample.split(letter$isB, SplitRatio=0.5)
+train = subset(letters, split == TRUE)
+test = subset(letters, split == FALSE)
+split = sample.split(letters$isB, SplitRatio=0.5)#
+train = subset(letters, split == TRUE)#
+test = subset(letters, split == FALSE)
+table(letters$isB)
+2350 / (2350+766)
+library(rpart)#
+library(rpart.plot)
+CARTb = rpart(isB ~ . - letter, data=train, method="class")
+predictTest = predict(CARTb, newdata=test, type="class")
+table(test$isB, predictTest)
+(1118+340) / (1118+57+43+340)
+# 1.1#
+letters = read.csv("letters_ABPR.csv")#
+letters$isB = as.factor(letters$letter == "B")#
+library(caTools)#
+set.seed(1000)#
+split = sample.split(letters$isB, SplitRatio=0.5)#
+train = subset(letters, split == TRUE)#
+test = subset(letters, split == FALSE)#
+table(letters$isB)#
+2350 / (2350+766)#
+#
+# 1.2#
+library(rpart)#
+library(rpart.plot)#
+CARTb = rpart(isB ~ . - letter, data=train, method="class")#
+predictTest = predict(CARTb, newdata=test, type="class")#
+table(test$isB, predictTest)
+letters <- read.csv("letters_ABPR.csv")#
+letters$isB = as.factor(letters$letter == "B")#
+# Split the data set into a training and testing set, putting 50% of the data in the training set. Set the seed #
+# to 1000 before making the split. The first argument to sample.split should be the dependent variable "letters$isB".#
+library(caTools)#
+set.seed(1000)#
+split <- sample.split(letters, SplitRatio = 0.5)#
+train <- letters[split==T,]#
+test <- letters[split==F,]#
+# Let's consider a baseline method that always predicts the most frequent outcome, which is "not B". #
+# What is the accuracy of this baseline method on the test set?#
+table(test$isB)#
+# Now build a classification tree to predict whether a letter is a B or not, using the training set#
+library(rpart)#
+library(rpart.plot)#
+treeModel <- rpart(isB ~. - letter, data=train, method="class")#
+# What is the accuracy of the CART model on the test set? (Use type="class" when making predictions on the test set.)#
+predicts <- predict(treeModel, newdata=test, type="class")#
+table(test$isB,predicts)
+(1136+319) / (1136+319+33+70)
+# 1.1#
+letters = read.csv("letters_ABPR.csv")#
+letters$isB = as.factor(letters$letter == "B")#
+library(caTools)#
+set.seed(1000)#
+split = sample.split(letters$isB, SplitRatio=0.5)#
+train = subset(letters, split == TRUE)#
+test = subset(letters, split == FALSE)#
+table(letters$isB)#
+2350 / (2350+766)#
+#
+# 1.2#
+library(rpart)#
+library(rpart.plot)#
+CARTb = rpart(isB ~ . - letter, data=train, method="class")#
+predictTest = predict(CARTb, newdata=test, type="class")#
+table(test$isB, predictTest)#
+(1118+340) / (1118+57+43+340)
+library(randomForest)#
+set.seed(1000)
+forestModel = randomForest(isB ~ . - letter, data=train)
+predictForest = predict(forestModel, newdata=test)
+table(test$isB, predictForest)
+(1165+374) / (1165+10+9+374)
+letters$letter = as.factor(letters$letter)
+# 1.1#
+letters = read.csv("letters_ABPR.csv")#
+letters$isB = as.factor(letters$letter == "B")#
+library(caTools)#
+set.seed(1000)#
+split = sample.split(letters$isB, SplitRatio=0.5)#
+train = subset(letters, split == TRUE)#
+test = subset(letters, split == FALSE)#
+table(letters$isB)#
+2350 / (2350+766)#
+#
+# 1.2#
+library(rpart)#
+library(rpart.plot)#
+CARTb = rpart(isB ~ . - letter, data=train, method="class")#
+predictTest = predict(CARTb, newdata=test, type="class")#
+table(test$isB, predictTest)#
+(1118+340) / (1118+57+43+340)#
+#
+# 1.3#
+library(randomForest)#
+set.seed(1000)#
+forestModel = randomForest(isB ~ . - letter, data=train)#
+predictForest = predict(forestModel, newdata=test)#
+table(test$isB, predictForest)#
+(1165+374) / (1165+10+9+374)#
+#
+# 2.1#
+letters$letter = as.factor(letters$letter)
+set.seed(2000)
+split = sample.split(letters$letter, SplitRatio=0.5)
+train = subset(letters, split == TRUE)#
+test = subset(letters, split == FALSE)
+table(test$letter)
+401 / (395+383+401+379)
+treeModel = rpart(letter ~ . - isB, data=train, method="class")
+treePredict = predict(treeModel, newdata=test, type="class")
+table(test$letter, treePredict)
+(348+318+363+340) / nrow(test$letter)
+(348+318+363+340) / nrow(test)
+set.seed(1000)
+forestModel = randomForest(letter ~ . - isB)
+forestModel = randomForest(letter ~ . - isB, data=train)
+forestPredict = predict(forestModel, newdata=test)
+table(test$letter, forestPredict)
+(390+380+393+364) / nrow(test)

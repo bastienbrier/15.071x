@@ -1,0 +1,130 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+read.csv("wiki.csv", stringsAsFactors = FALSE)
+wiki = read.csv("wiki.csv", stringsAsFactors = FALSE)
+wiki$Vandal = as.factor(wiki$Vandal)
+sum(wiki$Vandal==1)
+wiki = read.csv("wiki.csv", stringsAsFactors = FALSE)#
+wiki$Vandal = as.factor(wiki$Vandal)#
+sum(wiki$Vandal==1)
+library(tm)
+corpusAdded = Corpus(VectorSource(wiki$Added))
+corpusAdded = tm_map(corpusAdded, removeWords, stopwords("english"))
+corpusAdded = tm_map(corpusAdded, stemDocument)
+dtmAdded = DocumentTermMatrix(corpusAdded)
+str(dtmAdded)
+dtmAdded
+sparseAdded = removeSparseTerms(dtmAdded, 0.997)
+sparseAdded
+wordsAdded = as.data.frame(as.matrix(sparseAdded))
+colnames(wordsRemoved) = paste("R", colnames(wordsRemoved))
+colnames(wordsAdded) = paste("A", colnames(wordsAdded))
+corpusRemoved = Corpus(VectorSource(wiki$Remove))
+corpusRemoved = tm_map(corpusRemoved, removeWords, stopwords("english"))
+corpusRemoved = tm_map(corpusRemoved, stemDocument)
+dtmRemoved = DocumentTermMatrix(corpusRemoved)
+sparseRemoved = removeSparseTerms(dtmRemoved, 0.997)
+wordsRemoved = as.data.frame(as.matrix(sparseRemoved))
+colnames(wordsRemoved) = paste("R", colnames(wordsRemoved))
+wordsRemoved
+str(wordsRemoved)
+ncol(wordsRemoved)
+wikiWords = cbind(wordsAdded, wordsRemoved)
+wikiWords$Vandal = wiki$Vandal
+set.seed(123)
+library(caTools)
+split = sample.split(wikiWords$Vandal, SplitRatio = 0.7)
+train = subset(wikiWords, split == TRUE)
+test = subset(wikiWords, split == FALSE)
+table(test$Vandal)
+618 / (618+545)
+library(rpart)
+library(rpart.plot)
+treeModel = rpart(Vandal ~ ., data=train, method="class")
+treePredict = predict(treeModel, newdata=test)
+table(test$Vandal, treePredict)
+treePredict
+table(test$Vandal, treePredict[,2])
+table(test$Vandal, treePredict[,2] >= 0.5)
+(618+12) / (618+533+12)
+prp(treeModel)
+wikiWords2 = wikiWords
+wikiWords2$HTTP = ifelse(grepl("http", wiki$Added, fixed=TRUE), 1, 0)
+sum(wikiWords2$HTTP)
+wikiTrain2 = subset(wikiWords2, split == TRUE)
+wikiTest2 = subset(wikiWords2, split == FALSE)
+treeModel2 = rpart(Vandal ~ ., data=wikiTrain2, method="class")
+treePredict2 = predict(treeModel2, newdata=test)
+table(wikiTest2$Vandal, treePredict2[,2] >= 0.5)
+treePredict2 = predict(treeModel2, newdata=wikiTest2)
+table(wikiTest2$Vandal, treePredict2[,2] >= 0.5)
+(609+57) / (609+9+488+57)
+wikiWords2$NumWordsAdded = rowSums(as.matrix(dtmAdded))
+wikiWords2$NumWordsRemoved = rowSums(as.matrix(dtmRemoved))
+mean(wikiWords2$NumWordsAdded)
+wikiTrain3 = subset(wikiWord2, split == TRUE)
+wikiTrain3 = subset(wikiWords2, split == TRUE)
+wikiTest3 = subset(wikiWords2, split == FALSE)
+treeModel3 = rpart(Vandal ~ ., data=wikiTrain3, method="class")
+treePredict3 = predict(treeModel3, newdata=wikiTest3)
+table(wikiTest3$Vandal, treePredict3[,2] >= 0.5)
+(514+248) / (514+104+297+248)
+wikiWords3 = wikiWords2
+wikiWords3$Minor = wiki$Minor
+wikiWords3$Loggedin = wiki$Loggedin
+wikiTrain4 = subset(wikiWords3, split == TRUE)
+wikiTest4 = subset(wikiWords3, split == FALSE)
+treeModel4 = rpart(Vandal ~ ., data=wikiTrain4, method="class")
+treePredict4 = predict(treeModel4, newdata=wikiTest4)
+table(wikiTest4$Vandal, treePredict4[,2] >= 0.5)
+(595+241) / (595+23+304+241)
+prp(treeModel4)

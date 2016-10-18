@@ -1,0 +1,86 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+mvt = read.csv("mvtWeek1.csv")
+str(mvt)#
+summary(mvt)
+# 2.1 - 2.2#
+mvt$Date[1]#
+DateConvert = as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))#
+#
+# 2.3#
+mvt$Month = months(DateConvert)#
+mvt$Weekday = weekdays(DateConvert)#
+mvt$Date = DateConvert#
+table(mvt$Month)#
+#
+# 2.4#
+table(mvt$Weekday)#
+#
+# 2.5#
+table(mvt$Arrest, mvt$Month)
+hist(mvt$Date, breaks=100)
+boxplot(mvt$Date, mvt$Arrest)
+boxplot(mvt$Arrest, mvt$Date)
+boxplot(mvt$Date, mvt$Arrest)
+boxplot(mvt$Year, mvt$Arrest)
+boxplot(mvt$Date, mvt$Arrest)
+boxplot(DateConvert, mvt$Arrest)
+boxplot(mvt$Date, mvt$Arrest)
+boxplot(mvt$Date)
+boxplot(mvt$Arrest)
+boxplot(mvt$Date, mvt$Arrest)
+boxplot(mvt$Date~mvt$Arrest)
+table(mvt$Arrest, mvt$Date)
+table(mvt$Arrest, mvt$Year)
+sort(table(mvt$LocationDescription))
+Top5 = subset(mvt, mvt$LocationDescription == STREET | PARKING LOT/GARAGE(NON.RESID.) | ALLEY | GAS STATION | DRIVEWAY - RESIDENTIAL)
+Top5 = subset(mvt, mvt$LocationDescription == STREET | mvt$LocationDescription == PARKING LOT/GARAGE(NON.RESID.) | mvt$LocationDescription == ALLEY | mvt$LocationDescription == GAS STATION | mvt$LocationDescription == DRIVEWAY - RESIDENTIAL)
+Top5 = subset(mvt, mvt$LocationDescription == "STREET" | mvt$LocationDescription == "PARKING LOT/GARAGE(NON.RESID.)" | mvt$LocationDescription == "ALLEY" | mvt$LocationDescription == "GAS STATION" | mvt$LocationDescription == "DRIVEWAY - RESIDENTIAL")
+str(Top5)
+Top5$LocationDescription = factor(Top5$LocationDescription)
+summary(Top5)
+str(Top5)
+table(Top5$Arrest)
+table(Top5$Arrest, Top5$LocationDescription)
+table(Top5$LocationDescription, Top5$Weekday)

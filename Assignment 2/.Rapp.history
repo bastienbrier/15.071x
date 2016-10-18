@@ -1,0 +1,92 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+climate = read.csv("climate_change.csv")#
+trainingSet = subset(climate, climate$Year < 2007)#
+testSet = subset(climate, climate$Year > 2006)#
+model = lm(Temp ~ MEI + CO2 + CH4 + N2O + CFC.11 + CFC.12 + TSI + Aerosols, data=trainingSet)#
+summary(model)
+cor(trainingSet)
+climate = read.csv("climate_change.csv")#
+trainingSet = subset(climate, climate$Year < 2007)#
+testSet = subset(climate, climate$Year > 2006)#
+model = lm(Temp ~ MEI + CO2 + CH4 + N2O + CFC.11 + CFC.12 + TSI + Aerosols, data=trainingSet)#
+summary(model)#
+#
+# 2.1 - 2.2#
+cor(trainingSet)
+model2 = lm(Temp ~ N20 + MEI + TSI + Aerosols, data=trainingSet)#
+summary(model2)
+climate = read.csv("climate_change.csv")#
+trainingSet = subset(climate, climate$Year < 2007)#
+testSet = subset(climate, climate$Year > 2006)#
+model = lm(Temp ~ MEI + CO2 + CH4 + N2O + CFC.11 + CFC.12 + TSI + Aerosols, data=trainingSet)#
+summary(model)#
+#
+# 2.1 - 2.2#
+cor(trainingSet)
+model2 = lm(Temp ~ N20 + MEI + TSI + Aerosols, data=trainingSet)
+model2 = lm(Temp ~ N2O + MEI + TSI + Aerosols, data=trainingSet)#
+summary(model2)
+newModel = step(model2)#
+summary(newModel)
+newModel = step(model)#
+summary(newModel)
+predictTest = predict(newModel, newdata = testSet)#
+SSE = sum((testSet$Temp - predictTest)^2)#
+SST = sum((testSet$Temp - mean(testSet$Temp, na.rm=TRUE))^2)#
+Rsquared = 1 - SSE/SST
+Rsquared
+predictTest = predict(newModel, newdata = testSet)#
+SSE = sum((testSet$Temp - predictTest)^2)#
+SST = sum((testSet$Temp - mean(trainingSet$Temp, na.rm=TRUE))^2)#
+Rsquared = 1 - SSE/SST#
+Rsquared

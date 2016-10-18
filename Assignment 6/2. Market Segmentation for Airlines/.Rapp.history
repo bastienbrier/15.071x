@@ -1,0 +1,147 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+dailyKos = read.csv("dailykos.csv")
+distance = dist(dailyKos, method="euclidean")
+clusterIntensity = hclust(distance, method="ward.D")
+plot(clusterIntensity)
+clusters = cutree(clusterIntensity, k=7)
+cluster1 = subset(dailyKos, clusters == 1)#
+cluster2 = subset(dailyKos, clusters == 2)#
+cluster3 = subset(dailyKos, clusters == 3)#
+cluster4 = subset(dailyKos, clusters == 4)#
+cluster5 = subset(dailyKos, clusters == 5)#
+cluster6 = subset(dailyKos, clusters == 6)#
+cluster7 = subset(dailyKos, clusters == 7)
+table(clusters)
+tail(sort(colMeans(cluster1)))
+tail(sort(colMeans(cluster2)))#
+tail(sort(colMeans(cluster3)))#
+tail(sort(colMeans(cluster4)))#
+tail(sort(colMeans(cluster5)))#
+tail(sort(colMeans(cluster6)))#
+tail(sort(colMeans(cluster7)))
+set.seed(1000)
+KMC = kmeans(dailykos, 7)
+KMC = kmeans(dailyKos, 7)
+dkCluster = KMC$cluster
+table(dkCluster)
+dkCluster1 = subset(dailyKos, dkCluster == 1)#
+dkCluster2 = subset(dailyKos, dkCluster == 2)#
+dkCluster3 = subset(dailyKos, dkCluster == 3)#
+dkCluster4 = subset(dailyKos, dkCluster == 4)#
+dkCluster5 = subset(dailyKos, dkCluster == 5)#
+dkCluster6 = subset(dailyKos, dkCluster == 6)#
+dkCluster7 = subset(dailyKos, dkCluster == 7)
+tail(sort(colMeans(dkCluster1)))#
+tail(sort(colMeans(dkCluster2)))#
+tail(sort(colMeans(dkCluster3)))#
+tail(sort(colMeans(dkCluster4)))#
+tail(sort(colMeans(dkCluster5)))#
+tail(sort(colMeans(dkCluster6)))#
+tail(sort(colMeans(dkCluster7)))
+table(clusters, dkCluster)
+airlines = read.csv("airlines.csv")
+airlines = read.csv("AirlinesCluster.csv")
+summary(airlines)
+library(caret)
+preproc = preProcess(airlines)
+airlinesNorm = predict(preproc, airlines)
+summary(airlinesNorm)
+airlineDist = dist(airlinesNorm, method="euclidean")
+airlineClust = hclust(airlineDist, method="ward.D")
+plot(airlineClust)
+airlineClusters = cutree(airlineClust, k=5)
+table(airlineClusters)
+airlineGroups = cutree(airlineClust, k=5)#
+table(airlineGroups)
+tapply(airlines$Balance, airlineGroups, mean)#
+tapply(airlines$BQualMiles, airlineGroups, mean)#
+tapply(airlines$BonusMiles, airlineGroups, mean)#
+tapply(airlines$BonusTrans, airlineGroups, mean)#
+tapply(airlines$FlightMiles, airlineGroups, mean)#
+tapply(airlines$FlightTrans, airlineGroups, mean)#
+tapply(airlines$DaysSinceEnroll, airlineGroups, mean)
+tapply(airlines$Balance, airlineGroups, mean)#
+tapply(airlines$QualMiles, airlineGroups, mean)#
+tapply(airlines$BonusMiles, airlineGroups, mean)#
+tapply(airlines$BonusTrans, airlineGroups, mean)#
+tapply(airlines$FlightMiles, airlineGroups, mean)#
+tapply(airlines$FlightTrans, airlineGroups, mean)#
+tapply(airlines$DaysSinceEnroll, airlineGroups, mean)
+airlineGroups = cutree(airlineClust, k=5)#
+table(airlineGroups)#
+#
+# 2.3 - 2.7#
+tapply(airlines$Balance, airlineGroups, mean)#
+tapply(airlines$QualMiles, airlineGroups, mean)#
+tapply(airlines$BonusMiles, airlineGroups, mean)#
+tapply(airlines$BonusTrans, airlineGroups, mean)#
+tapply(airlines$FlightMiles, airlineGroups, mean)#
+tapply(airlines$FlightTrans, airlineGroups, mean)#
+tapply(airlines$DaysSinceEnroll, airlineGroups, mean)
+set.seed(88)
+airlineKmeans = kmeans(airlinesNorm, centers = 5, iter.maw = 1000)
+airlineKmeans = kmeans(airlinesNorm, centers = 5, iter.max = 1000)
+airlineCluster = airlineKmeans$cluster
+table(airlineCluster)
+airlineKCluster = airlineKmeans$cluster#
+table(airlineKCluster)
+tapply(airlines$Balance, airlineKCluster, mean)#
+tapply(airlines$QualMiles, airlineKCluster, mean)#
+tapply(airlines$BonusMiles, airlineKCluster, mean)#
+tapply(airlines$BonusTrans, airlineKCluster, mean)#
+tapply(airlines$FlightMiles, airlineKCluster, mean)#
+tapply(airlines$FlightTrans, airlineKCluster, mean)#
+tapply(airlines$DaysSinceEnroll, airlineKCluster, mean)
+airlineKCluster$centers
+airlineKmeans$centers
+airlineKmeans$centers[1,]

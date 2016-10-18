@@ -1,0 +1,105 @@
+> IBM = read.csv("IBMStock.csv")
+> GE = read.csv("GEStock.csv")
+> CocaCola = read.csv("CocaColaStock.csv")
+> ProcterGamble = read.csv("ProcterGambleStock.csv")
+> Boeing = read.csv("BoeingStock.csv")
+> 
+> # 1.1
+> IBM$Date = as.Date(IBM$Date, "%m/%d/%y")
+> GE$Date = as.Date(GE$Date, "%m/%d/%y")
+> CocaCola$Date = as.Date(CocaCola$Date, "%m/%d/%y")
+> ProcterGamble$Date = as.Date(ProcterGamble$Date, "%m/%d/%y")
+> Boeing$Date = as.Date(Boeing$Date, "%m/%d/%y")
+> str(IBM)
+'data.frame':	480 obs. of  2 variables:
+ $ Date      : Date, format: "1970-01-01" "1970-02-01" "1970-03-01" "1970-04-01" ...
+ $ StockPrice: num  360 347 327 320 270 ...
+> 
+> # 1.2 - 1.4
+> summary(IBM)
+      Date              StockPrice    
+ Min.   :1970-01-01   Min.   : 43.40  
+ 1st Qu.:1979-12-24   1st Qu.: 88.34  
+ Median :1989-12-16   Median :112.11  
+ Mean   :1989-12-15   Mean   :144.38  
+ 3rd Qu.:1999-12-08   3rd Qu.:165.41  
+ Max.   :2009-12-01   Max.   :438.90  
+> 
+> # 1.5
+> summary(GE)
+      Date              StockPrice     
+ Min.   :1970-01-01   Min.   :  9.294  
+ 1st Qu.:1979-12-24   1st Qu.: 44.214  
+ Median :1989-12-16   Median : 55.812  
+ Mean   :1989-12-15   Mean   : 59.303  
+ 3rd Qu.:1999-12-08   3rd Qu.: 72.226  
+ Max.   :2009-12-01   Max.   :156.844  
+> 
+> # 1.6
+> summary(CocaCola)
+      Date              StockPrice    
+ Min.   :1970-01-01   Min.   : 30.06  
+ 1st Qu.:1979-12-24   1st Qu.: 42.76  
+ Median :1989-12-16   Median : 51.44  
+ Mean   :1989-12-15   Mean   : 60.03  
+ 3rd Qu.:1999-12-08   3rd Qu.: 69.62  
+ Max.   :2009-12-01   Max.   :146.58  
+> 
+> #.1.7
+> summary(Boeing)
+      Date              StockPrice    
+ Min.   :1970-01-01   Min.   : 12.74  
+ 1st Qu.:1979-12-24   1st Qu.: 34.64  
+ Median :1989-12-16   Median : 44.88  
+ Mean   :1989-12-15   Mean   : 46.59  
+ 3rd Qu.:1999-12-08   3rd Qu.: 57.21  
+ Max.   :2009-12-01   Max.   :107.28  
+> 
+> # 1.8
+> sd(ProcterGamble$StockPrice)
+[1] 18.19414
+> 
+> # 2.1
+> plot(CocaCola$Date, CocaCola$StockPrice)
+> plot(CocaCola$Date, CocaCola$StockPrice, type="l")
+> 
+> # 2.2 - 2.3
+> lines(ProcterGamble$Date, ProcterGamble$StockPrice)
+> plot(CocaCola$Date, CocaCola$StockPrice, type="l", col ="red")
+> lines(ProcterGamble$Date, ProcterGamble$StockPrice, col="blue", lty=2)
+> abline(v=as.Date(c("2000-03-01")), lwd=2)
+> 
+> # 3.1 - 3.2
+> plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210), xlab = "Year",ylab = "Stock Price")
+> lines(ProcterGamble$Date[301:432], ProcterGamble$StockPrice[301:432], col="blue")
+> lines(GE$Date[301:432], GE$StockPrice[301:432], col="green")
+> lines(IBM$Date[301:432], IBM$StockPrice[301:432], col="black")
+> lines(Boeing$Date[301:432], Boeing$StockPrice[301:432], col="orange")
+> 
+> # 3.3
+> abline(v=as.Date(c("1997-09-01")), lwd=2)
+> abline(v=as.Date(c("1997-11-30")), lwd=2)
+> 
+> # 3.4
+> abline(v=as.Date(c("2004-01-01")), lwd=2)
+> abline(v=as.Date(c("2005-12-31")), lwd=2)
+> 
+> # 4.1
+> tapply(IBM$StockPrice, months(IBM$Date), mean)
+     août     avril  décembre   février   janvier   juillet      juin       mai      mars  novembre   octobre septembre 
+ 140.1455  152.1168  140.7593  152.6940  150.2384  139.0670  139.0907  151.5022  152.4327  138.0187  137.3466  139.0885 
+> 
+> # 4.2 - 4.3
+> tapply(GE$StockPrice, months(GE$Date), mean)
+     août     avril  décembre   février   janvier   juillet      juin       mai      mars  novembre   octobre septembre 
+ 56.50315  64.48009  59.10217  62.52080  62.04511  56.73349  56.46844  60.87135  63.15055  57.28879  56.23897  56.23913 
+> tapply(CocaCola$StockPrice, months(CocaCola$Date), mean)
+     août     avril  décembre   février   janvier   juillet      juin       mai      mars  novembre   octobre septembre 
+ 58.88014  62.68888  59.73223  60.73475  60.36849  58.98346  60.81208  61.44358  62.07135  59.10268  57.93887  57.60024 
+> tapply(ProcterGamble$StockPrice, months(ProcterGamble$Date), mean)
+     août     avril  décembre   février   janvier   juillet      juin       mai      mars  novembre   octobre septembre 
+ 76.82266  77.68671  78.29661  79.02575  79.61798  76.64556  77.39275  77.85958  77.34761  78.45610  76.67903  76.62385 
+> tapply(Boeing$StockPrice, months(Boeing$Date), mean)
+     août     avril  décembre   février   janvier   juillet      juin       mai      mars  novembre   octobre septembre 
+ 46.86311  47.04686  46.17315  46.89223  46.51097  46.55360  47.38525  48.13716  46.88208  45.14990  45.21603  46.30485 
+> 

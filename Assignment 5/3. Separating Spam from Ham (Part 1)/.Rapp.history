@@ -1,0 +1,166 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+emails = read.csv("emails.csv", stringsAsFactors = FALSE)
+str(emails)
+table(emails$spam)
+max(nchar(emails$text))
+which.min(nchar(emails$text))
+library(tm)
+corpus = Corpus(VectorSource(emails$text))
+corpus = tm_map(corpus, tolower)
+corpus = tm_map(corpus, PlainTextDocument)
+corpus = tm_map(corpus, removePunctuation)
+corpus = tm_map(corpus, removeWords, stopwords("english"))
+corpus = tm_map(corpus, stemDocument)
+dtm = DocumentTermMatrix(corpus)
+dtm = as.data.frame(as.matrix(dtm))
+str(dtm)
+spdtm = dtm
+spdtm = removeSparseTerms(spdtm, 0.95)
+spdtm = removeSparseTerms(dtm, 0.95)
+# 1.1#
+emails = read.csv("emails.csv", stringsAsFactors = FALSE)#
+str(emails)#
+#
+# 1.2#
+table(emails$spam)#
+#
+# 1.5#
+max(nchar(emails$text))#
+#
+# 1.6#
+which.min(nchar(emails$text))#
+#
+# 2.1#
+library(tm)#
+corpus = Corpus(VectorSource(emails$text))#
+corpus = tm_map(corpus, tolower)#
+corpus = tm_map(corpus, PlainTextDocument)#
+corpus = tm_map(corpus, removePunctuation)#
+corpus = tm_map(corpus, removeWords, stopwords("english"))#
+corpus = tm_map(corpus, stemDocument)#
+dtm = DocumentTermMatrix(corpus)
+dtm
+spdtm = dtm#
+spdtm = removeSparseTerm(spdtm, 0.95)
+spdtm = removeSparseTerms(spdtm, 0.95)
+spdtm = as.data.frame(as.matrix(spdtm))
+spdtm
+str(spdtm)
+emailsSparse = spdtm
+colnames(emailsSparse) = make.names(colnames(emailsSparse))
+which.max(colSums(emailsSparse))
+emailsSparse$spam = emails$spam
+ham = subset(emailsSparse, spam == 0)
+sum(colSums(ham) >= 5000)
+spam = subset(emailsSparse, spam == 1)
+sum(colSums(spam) >= 1000)
+table(colSums(emailsSparse[emailsSparse$spam==1,names(emailsSparse) !="spam"]) >= 1000)
+emailsSparse$spam = as.factor(emailsSparse$spam)
+set.seed(123)
+library(caTools)
+set.seed(123)
+spl = sample.plit(emailsSparse$spam, SplitRatio = 0.7)
+spl = sample.split(emailsSparse$spam, SplitRatio = 0.7)
+train = subset(emailsSparse, spl == TRUE)
+test = subset(emailsSparse, spl == FALSE)
+spamLog = glm(spam ~ ., data=train, family="binomial")
+library(rpart)
+library(rpart.plot)
+spamCART = rpart(spam ~ ., data=train, method="class")
+library(randomForest)
+set.seed(123)
+spamRF = randomForest(spam ~ ., data=train)
+predTrainLog = predict(spamLog, type="response")
+predTrainCART = predict(spamCART)[,2]
+predTrainRF = predict(spam RF, type="prob")[,2]
+predTrainRF = predict(spamRF, type="prob")[,2]
+table(predTrainLog < 0.00001)
+table(predTrainLog > 0.99999)
+table(predTrainLog >= 0.00001 & predTrainLog <= 0.99999)
+summary(spamLog)
+prp(spamCART)
+table(train$spam, predTrainLog >= 0.5)
+(3052+954) / (3052+4+954)
+library(ROCR)
+logROCRpred = prediction(predTrainLog, train$spam)
+as.numeric(performance(logROCRpred, "auc")@y.values)
+table(train$spam, predTrainCART)
+table(train$spam, predTrainCART >= 0.5)
+(2885+894) / (2885+167+64+894)
+predCARTROCR = prediction(predTrainCART, train$spam)
+as.numeric(performance(perdCARTROCR, "auc")@y.values)
+as.numeric(performance(predCARTROCR, "auc")@y.values)
+table(train$spam, predTrainRF >= 0.5)
+(3013+914) / (3013+39+44+914)
+predRFROCR = prediction(predTrainRF, train$spam)
+as.numeric(performance(predRFROCR, "auc")@y.values)
+predTestLog = predict(spamLog, newdata=test, type="response")
+predTestCART = predict(spamCART, newdata=test)[,2]
+predTestRF = predict(spamRF, newdata=test, type="prob")[,2]
+table(test$spam, predTestLog >= 0.5)
+(1257+376) / (1257+51+34+376)
+predLogROCR = prediction(predTestLog, train$spam)
+predLogROCR = prediction(predTestLog, test$spam)
+predictionLogROCR = prediction(predTestLog, test$spam)#
+as.numeric(performance(predictionLogROCR)@y.values)
+as.numeric(performance(predictionLogROCR, "auc")@y.values)
+table(test$spam, predTestCART >= 0.5)
+(1228+386) / (1228+80+24+386)
+predictionCARTROCR = prediction(predTestCART, test$spam)
+as.numeric(performance(predictionCARTTOCR, "auc")@y.values)
+as.numeric(performance(predictionCARTROCR, "auc")@y.values)
+table(test$spam, predTestRF >= 0.5)
+(1290+386) / (1290+18+24+386)
+predictionRFROCR = prediction(predTestRF, test$spam)
+as.numeric(performance(perdictionRFROCR, "auc")@y.values)
+as.numeric(performance(predictionRFROCR, "auc")@y.values)

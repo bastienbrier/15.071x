@@ -1,0 +1,182 @@
+sd(c(5,8,12))
+which.min(c(4,1,6))
+Sys.setlocale("LC_ALL", "C")
+dsqk
+dkslqdlsq
+8*6
+2^16
+2^
+4
+8*6
+2^16
+2^
+8*6
+8*10
+sqrt(2)
+abs(-§())
+abs(-65)
+?sqrt
+SquareRoot2 = sqrt(2)
+SquareRoot2
+HoursYear <- 365*24
+HoursYear
+ls()
+c(2,3,5,6,13)
+Country = c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy = c(74,76,65,83,79)
+Country
+LifeExpectancy
+Country[1]
+LifeExpectancy[3]
+seq(0,100,2)
+CountryData = data.frame(Country,LifeExpectancy)
+CountryData
+CountryData$Population = c(199000,1390000,1240000,7997,318000)
+CountryData
+Country = c("Australia", "Greece")
+LifeExpectancy = c(82,81)
+Population = c(23050,11125)
+NewCountryData = data.frame(Country, LifeExpectancy, Population)
+NewCountryData
+AllCountryData = rbind(CountryData, NewCountryData)
+AllCountryData
+mvt = read.csv("mvtWeek1.csv")
+teamRank = c(1,2,3,3,4,4,4,4,5,5)
+wins2012 = c(94, 88, 95, 88, 93, 94, 98, 97, 93, 94)
+wins2013 = c(97, 97, 92, 93, 92, 96, 94, 96, 92, 90)
+c2012 = lm(teamRank ~ wins2012, data=teamRank)
+summary(wins2012)
+str(wins2012)
+cor(teamRank, wins2012)
+cor(teamRank, wins2013)
+trials = read.csv("clinical_trial.csv", stringsAsFactor = FALSE)
+str(trials)
+summary(trials)
+max(nchar(trials$abstract))
+sum(nchar(trials$abstract) == 0)
+trials[which.min(nchar(trials$title)), "title"]
+library(tm)
+corpusTitle = Corpus(VectorSource(trials$title))
+corpusAbstract = Corpus(VectorSource(trials$abstract))
+corpusTitle = tm_map(corpusTitle, tolower)
+corpusAbstract = tm_map(corpusAbstract, tolower)
+corpusTitle = tm_map(corpusTitle, PlainTextDocument)
+corpusAbstract = tm_map(corpusAbstract, PlainTextDocument)
+corpusTitle = tm_map(corpusTitle, removePunctuation)
+corpusAbstract = tm_map(corpusAbstract, removePunctuation)
+corpusTitle = tm_map(corpusTitle, removeWords, stopwords("english"))
+corpusAbstract = tm_map(corpusAbstract, removeWords, stopwords("english"))
+corpusTitle = tm_map(corpusTitle, stemDocument)
+corpusAbstract = tm_map(corpusTitle, stemDocument)
+dtmTitle = DocumentTermMatrix(corpusTitle)
+dtmAbstract = DocumentTermMatrix(corpusAbstract)
+sparseTitle = removeSparseTerms(dtmTitle, 0.95)
+sparseAbstract = removeSparseTerms(dtmAbstract, 0.95)
+dtmTitle = as.data.frame(as.matrix(sparseTitle))
+dtmAbstract = as.data.frame(as.matrix(sparseAbstract))
+dtmTitle
+dtmAbstract
+str(dtmTitle)
+str(dtmAbstract)
+library(tm)#
+corpusTitle = Corpus(VectorSource(trials$title))#
+corpusAbstract = Corpus(VectorSource(trials$abstract))#
+corpusTitle = tm_map(corpusTitle, tolower)#
+corpusAbstract = tm_map(corpusAbstract, tolower)#
+corpusTitle = tm_map(corpusTitle, PlainTextDocument)#
+corpusAbstract = tm_map(corpusAbstract, PlainTextDocument)#
+corpusTitle = tm_map(corpusTitle, removePunctuation)#
+corpusAbstract = tm_map(corpusAbstract, removePunctuation)#
+corpusTitle = tm_map(corpusTitle, removeWords, stopwords("english"))#
+corpusAbstract = tm_map(corpusAbstract, removeWords, stopwords("english"))#
+corpusTitle = tm_map(corpusTitle, stemDocument)#
+corpusAbstract = tm_map(corpusAbstract, stemDocument)#
+dtmTitle = DocumentTermMatrix(corpusTitle)#
+dtmAbstract = DocumentTermMatrix(corpusAbstract)#
+sparseTitle = removeSparseTerms(dtmTitle, 0.95)#
+sparseAbstract = removeSparseTerms(dtmAbstract, 0.95)#
+dtmTitle = as.data.frame(as.matrix(sparseTitle))#
+dtmAbstract = as.data.frame(as.matrix(sparseAbstract))
+str(dtmTitle)#
+str(dtmAbstract)
+dtmTitle
+dtmAbstract
+which.max(colSums(dtmAbstract))
+colnames(dtmTitle) = paste0("T", colnames(dtmTitle))
+colnames(dtmAbstract) = paste0("A", colnames(dtmAbstract))
+dtm = cbind(dtmTitle, dtmAbstract)
+dtm$trial = trials$trial
+ncol(dtm)
+library(caTools)
+spl = sample.split(dtm$trial, SplitRatio=0.7)
+set.seed(144)
+spl = sample.split(dtm$trial, SplitRatio=0.7)
+train = subset(dtm, spl == TRUE)
+test = subset(dtm, spl == FALSE)
+table(test$trial)
+313 / (313+245)
+library(rpart)
+library(rpart.plot)
+treeModel = rpart(trial ~ ., data=train, method="class")
+prp(treeModel)
+# 1.1#
+trials = read.csv("clinical_trial.csv", stringsAsFactor = FALSE)#
+str(trials)#
+summary(trials)#
+max(nchar(trials$abstract))#
+#
+# 1.2#
+sum(nchar(trials$abstract) == 0)#
+#
+# 1.3#
+trials[which.min(nchar(trials$title)), "title"]#
+#
+# 2.1#
+library(tm)#
+corpusTitle = Corpus(VectorSource(trials$title))#
+corpusAbstract = Corpus(VectorSource(trials$abstract))#
+corpusTitle = tm_map(corpusTitle, tolower)#
+corpusAbstract = tm_map(corpusAbstract, tolower)#
+corpusTitle = tm_map(corpusTitle, PlainTextDocument)#
+corpusAbstract = tm_map(corpusAbstract, PlainTextDocument)#
+corpusTitle = tm_map(corpusTitle, removePunctuation)#
+corpusAbstract = tm_map(corpusAbstract, removePunctuation)#
+corpusTitle = tm_map(corpusTitle, removeWords, stopwords("english"))#
+corpusAbstract = tm_map(corpusAbstract, removeWords, stopwords("english"))#
+corpusTitle = tm_map(corpusTitle, stemDocument)#
+corpusAbstract = tm_map(corpusAbstract, stemDocument)#
+dtmTitle = DocumentTermMatrix(corpusTitle)#
+dtmAbstract = DocumentTermMatrix(corpusAbstract)#
+sparseTitle = removeSparseTerms(dtmTitle, 0.95)#
+sparseAbstract = removeSparseTerms(dtmAbstract, 0.95)#
+dtmTitle = as.data.frame(as.matrix(sparseTitle))#
+dtmAbstract = as.data.frame(as.matrix(sparseAbstract))#
+str(dtmTitle)#
+str(dtmAbstract)#
+#
+# 2.3#
+which.max(colSums(dtmAbstract))#
+#
+# 3.1#
+colnames(dtmTitle) = paste0("T", colnames(dtmTitle))#
+colnames(dtmAbstract) = paste0("A", colnames(dtmAbstract))#
+#
+# 3.2#
+dtm = cbind(dtmTitle, dtmAbstract)#
+dtm$trial = trials$trial#
+ncol(dtm)#
+#
+# 3.3#
+library(caTools)#
+set.seed(144)#
+spl = sample.split(dtm$trial, SplitRatio=0.7)#
+train = subset(dtm, spl == TRUE)#
+test = subset(dtm, spl == FALSE)#
+table(test$trial)#
+313 / (313+245)#
+#
+# 3.4#
+library(rpart)#
+library(rpart.plot)#
+treeModel = rpart(trial ~ ., data=train, method="class")#
+prp(treeModel)
